@@ -1,7 +1,5 @@
 # Airdrop Tracker
 
-MIT licensed. See [License](#license).
-
 A self-hosted web app for keeping airdrop work in one place. You add a project once, and the app builds the task list, watches the project's news, tracks the TGE date, and checks the on-chain tasks every 30 minutes. It also reads the Telegram alpha groups you already follow, archives the messages, and turns anything relevant into a project update or a new opportunity with a tier.
 
 Everything runs on your own machine or a cheap VPS. Storage is a single SQLite file. There is no account system except one optional PIN, and no data leaves your server except the calls you configure (your LLM endpoint, Telegram, Etherscan).
@@ -126,9 +124,3 @@ Notifications never arrive. Check `TELEGRAM_CHAT_ID` first. A wrong chat ID fail
 On-chain checks always fail. Check that `ETHERSCAN_API_KEY` is valid and the wallet is registered for the right chain. Etherscan V2 uses one key for all EVM chains, older single-chain keys will not work.
 
 The LLM bill gets large. Set `LLM_DAILY_BUDGET`. The app stops calling the model once the counter reaches the limit and picks up again the next day.
-
-## License
-
-MIT License, copyright (c) 2026 airdrop-tracker contributors.
-
-What that means in practice: you can run this for yourself or your company, change it, publish your changes, and sell a product built on it. You cannot hold the authors responsible if something breaks, and you have to keep the copyright notice and this permission text with any copy you distribute. The full legal text is in [LICENSE](LICENSE).
