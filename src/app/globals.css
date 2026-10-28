@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* ── Design system "acid" — bentukan diambil dari referensi ponsfamily.com/launchpad ──
+   dark #0b0b0b, surface #151515, aksen acid green, danger merah (bukan pink — pink milik tier S/social),
+   radius gede (kartu 24, panel 20, field 13, badge pill), Nunito rounded, hover lift. */
+:root {
+  --bg: #0b0b0b;
+  --surface: #151515;
+  --surface-2: #1c1c1c;
+  --border: #fdfef91f;
+  --border-strong: #fdfef93d;
+  --text: #fdfef9;
+  --muted: #fdfef99e;
+  --faint: #fdfef980;
+  --accent: #00c805;
+  --accent-deep: #1ad81f;
+  --done: #46d853;
+  --warn: #fbbf24;
+  /* merah beneran buat error/hapus — pink cuma milik tier S & social biar gak tabrakan arti */
+  --danger: #f87171;
+  --tier-s: #fc7aef;
+  --tier-a: #8c78e7;
+  --tier-b: #81abe8;
+  --tier-c: #64748b;
+
+  /* shadow layered ala referensi */
+  --shadow-soft: 0 1px 2px #00000052, 0 8px 24px #00000047;
+  --shadow-raised: 0 2px 4px #00000057, 0 12px 32px #00000052, 0 32px 64px #00000042;
+
+  /* easing bouncy */
+  --ease-pop: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-done: var(--done);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-tier-s: var(--tier-s);
+  --color-tier-a: var(--tier-a);
+  --color-tier-b: var(--tier-b);
+  --color-tier-c: var(--tier-c);
+  --font-sans: var(--font-nunito);
+  --font-mono: var(--font-jetbrains), var(--font-nunito);
+
+  /* radius dirampingin ke arah data-tool: kartu 14, panel 12, field 10, float 16, pill tetap */
+  --radius-sm: 999px;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--bg);
+  /* glow acid tipis dari atas — suasana "data-tool premium", gak norak */
+  background-image: radial-gradient(900px 420px at 50% -80px, rgba(0, 200, 5, 0.055), transparent 65%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-sans), ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar tipis */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--faint);
+}
+
+/* fokus keyboard — ring acid, offset lega */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── interaksi lift ala referensi: naik 1px + shadow ── */
+.lift {
+  transition: transform 0.28s var(--ease-pop), box-shadow 0.28s var(--ease-pop), border-color 0.28s var(--ease-pop);
+}
+.lift:hover {
+  box-shadow: var(--shadow-raised);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+.lift:active {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(0);
+}
+
+/* ── motion: cuma feedback ── */
+@keyframes checkFlash {
+  0% {
+    box-shadow: 0 0 0 0 rgba(70, 216, 83, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(70, 216, 83, 0);
+  }
+}
+.animate-check {
+  animation: checkFlash 300ms ease-out;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-toast {
+  animation: toastIn 180ms var(--ease-pop);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.animate-pulse-dot {
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fadeUp 280ms var(--ease-pop) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

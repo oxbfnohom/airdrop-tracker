@@ -1,0 +1,36 @@
+{
+  "name": "airdrop-tracker",
+  "version": "0.1.0",
+  "description": "Web pribadi tracking garapan airdrop: misi harian gaya Galxe, ekosistem sub-garapan, radar peluang & TGE dari grup finder Telegram, bot berita per-project, auto-check on-chain.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "input": "^1.0.1",
+    "next": "16.3.8",
+    "node-cron": "^4.6.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "teleproto": "^1.229.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^20",
+    "@types/node-cron": "^3.0.11",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
