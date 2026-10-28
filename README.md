@@ -129,8 +129,6 @@ The LLM bill gets large. Set `LLM_DAILY_BUDGET`. The app stops calling the model
 
 ## License
 
-MIT License, copyright (c) 2026 airdrop-tracker contributors. The full text is in `LICENSE`. You can use, modify, and redistribute it, including commercially, as long as the copyright notice stays with it.
+MIT License, copyright (c) 2026 airdrop-tracker contributors.
 
-## Docs in other languages
-
-`README.id.md` is the Indonesian version.
+What that means in practice: you can run this for yourself or your company, change it, publish your changes, and sell a product built on it. You cannot hold the authors responsible if something breaks, and you have to keep the copyright notice and this permission text with any copy you distribute. The full legal text is in [LICENSE](LICENSE).
