@@ -41,15 +41,24 @@ pm2 save
 
 ## What to fill in `.env.local`
 
-Start with the LLM block. If you leave `LLM_ENABLED=0`, skip the first three rows, the app works without them.
+Start with the LLM block. If you leave `LLM_ENABLED=0`, skip the first three rows, the app works without them. Everything under "extra provider" is optional as well: fill in one, two or none, the app uses whichever answers first (OpenRouter, then Gemini, then your own endpoint).
 
 | Variable | Required | Where to get it | What it does |
 |---|---|---|---|
 | `LLM_BASE_URL` | for research | Your provider's OpenAI-compatible URL, for example `https://api.openai.com/v1`. It must be reachable from where the app runs, so not `127.0.0.1` if the app is on a VPS | Sends research prompts for project summaries and task checklists |
 | `LLM_API_KEY` | for research | Your provider dashboard | Authenticates the LLM calls |
 | `LLM_MODEL` | for research | Your provider's model list | Which model to call |
+| `LLM_MODELS` | no | Comma separated model names | Replaces `LLM_MODEL` when you want the app to rotate over several models on the same endpoint |
+| `LLM_VISION_MODELS` | no | Same endpoint, vision models | Models that can read images, for screenshots pasted into a task. Empty means the text list is used for everything |
+| `LLM_NO_THINK` | no | Comma separated model names | Models whose reasoning has to be switched off explicitly. Some self-hosted servers return an empty answer without this |
 | `LLM_ENABLED` | no | `1` or `0` | `0` disables every LLM call. Checklists stay empty until you write them yourself |
 | `LLM_DAILY_BUDGET` | no | A number | Hard cap on LLM calls per day |
+| `OPENROUTER_API_KEY` | no | openrouter.ai/keys | Extra provider, tried before your own endpoint. The `:free` models cost nothing |
+| `OPENROUTER_TEXT_MODELS` | with the key above | Comma separated model names | Which OpenRouter models to use for text |
+| `OPENROUTER_VISION_MODELS` | no | Comma separated model names | Which OpenRouter models to use for images |
+| `GEMINI_API_KEY` | no | aistudio.google.com, free tier | Extra provider, tried after OpenRouter |
+| `GEMINI_TEXT_MODELS` | no | Defaults to `gemini-2.5-flash` | Which Gemini models to use for text |
+| `GEMINI_VISION_MODELS` | no | Defaults to the text list | Which Gemini models to use for images |
 | `TELEGRAM_BOT_TOKEN` | for alerts | @BotFather, `/newbot` | Sends pushes to your Telegram |
 | `TELEGRAM_CHAT_ID` | for alerts | Send `/start` to your bot, then read `getUpdates`, or ask @userinfobot | Which chat receives the pushes |
 | `TG_API_ID` | for group reading | my.telegram.org, API development tools | Logs in the userbot that reads your groups |
